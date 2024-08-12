@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Asset</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Internal CSS for custom styles */
+        body {
+            padding: 20px; /* Add padding to the body */
+        }
+        form {
+            max-width: 600px; /* Set max-width for the form */
+            margin: 0 auto; /* Center align the form */
+        }
+        th {
+            width: 30%; /* Set width for table headers */
+        }
+        td {
+            width: 70%; /* Set width for table cells */
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center">Update Asset</h1>
+    <form method="POST" class="text-center">
+        {% csrf_token %}
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Hospital</th>
+                    <td>
+                        <select class="form-control" name="hospital">
+                            {% for hospital in hospitals %}
+                            <option value="{{ hospital.id }}" {% if hospital.id == asset.hospital_id %}selected{% endif %}>
+                                {{ hospital.hospital_name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Asset Name</th>
+                    <td><input type="text" class="form-control" name="asset_name" value="{{ asset.asset_name }}"></td>
+                </tr>
+                <tr>
+                    <th>Asset Price</th>
+                    <td><input type="text" class="form-control" name="asset_type" value="{{ asset.asset_type }}"></td>
+                </tr>
+                <tr>
+                    <th>Purchase Date</th>
+                    <td><input type="date" class="form-control" name="purchase_date" value="{{ asset.purchase_date }}"></td>
+                </tr>
+                <tr>
+                    <th>Warranty Start Date</th>
+                    <td><input type="date" class="form-control" name="warranty_start_date" value="{{ asset.warranty_start_date }}"></td>
+                </tr>
+                <tr>
+                    <th>Contract End Date</th>
+                    <td><input type="date" class="form-control" name="contract_end_date" value="{{ asset.contract_end_date }}"></td>
+                </tr>
+                <tr>
+                    <th>Contract Type</th>
+                    <td><input type="text" class="form-control" name="contract_type" value="{{ asset.contract_type }}"></td>
+                </tr>
+                <tr>
+                    <th>Installed At</th>
+                    <td><input type="text" class="form-control" name="installed_at" value="{{ asset.installed_at }}"></td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td><input type="text" class="form-control" name="status" value="{{ asset.status }}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center"><input type="submit" class="btn btn-primary" value="Update"></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

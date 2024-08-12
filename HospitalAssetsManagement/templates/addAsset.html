@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+    <h1 class="text-center mt-4 mb-4">Add Asset</h1>
+    <form method="POST">
+    {% csrf_token %}
+    <div class="container">
+        <div class="form-group row">
+            <label for="hospital_name" class="col-sm-4 col-form-label">Hospital</label>
+            <div class="col-sm-8">
+                <select id="hospital_name" name="hospital_name" class="form-control">
+                    {% for x in data %}
+                        <option value="{{ x.id }}">{{ x.hospital_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="asset_name" class="col-sm-4 col-form-label">Asset Name</label>
+            <div class="col-sm-8">
+                <input type="text" id="asset_name" name="asset_name" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="asset_type" class="col-sm-4 col-form-label">Asset price</label>
+            <div class="col-sm-8">
+                <input type="text" id="asset_type" name="asset_type" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="purchase_date" class="col-sm-4 col-form-label">Purchase Date</label>
+            <div class="col-sm-8">
+                <input type="date" id="purchase_date" name="purchase_date" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="warranty_start_date" class="col-sm-4 col-form-label">Warranty Start Date</label>
+            <div class="col-sm-8">
+                <input type="date" id="warranty_start_date" name="warranty_start_date" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="contract_end_date" class="col-sm-4 col-form-label">Contract End Date</label>
+            <div class="col-sm-8">
+                <input type="date" id="contract_end_date" name="contract_end_date" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="contract_type" class="col-sm-4 col-form-label">Contract Type</label>
+            <div class="col-sm-8">
+                <input type="text" id="contract_type" name="contract_type" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="installed_at" class="col-sm-4 col-form-label">Installed At</label>
+            <div class="col-sm-8">
+                <input type="text" id="installed_at" name="installed_at" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="status" class="col-sm-4 col-form-label">Status</label>
+            <div class="col-sm-8">
+                <input type="text" id="status" name="status" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+    </form>
+{% endblock main %}
+
+{% block css %}
+    <style>
+        /* Optional: Add custom styles here if needed */
+        body {
+            padding: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+{% endblock css %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Asset</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Optional: Add custom styles here if needed */
+        body {
+            padding: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center mt-4 mb-4">Add Asset</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <div class="form-group row">
+                <label for="hospital_name" class="col-sm-4 col-form-label">Hospital</label>
+                <div class="col-sm-8">
+                    <select id="hospital_name" name="hospital_name" class="form-control">
+                        {% for x in data %}
+                            <option value="{{ x.id }}">{{ x.hospital_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="asset_name" class="col-sm-4 col-form-label">Asset Name</label>
+                <div class="col-sm-8">
+                    <input type="text" id="asset_name" name="asset_name" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="asset_type" class="col-sm-4 col-form-label">Asset Type</label>
+                <div class="col-sm-8">
+                    <input type="text" id="asset_type" name="asset_type" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="purchase_date" class="col-sm-4 col-form-label">Purchase Date</label>
+                <div class="col-sm-8">
+                    <input type="date" id="purchase_date" name="purchase_date" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="warranty_start_date" class="col-sm-4 col-form-label">Warranty Start Date</label>
+                <div class="col-sm-8">
+                    <input type="date" id="warranty_start_date" name="warranty_start_date" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="contract_end_date" class="col-sm-4 col-form-label">Contract End Date</label>
+                <div class="col-sm-8">
+                    <input type="date" id="contract_end_date" name="contract_end_date" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="contract_type" class="col-sm-4 col-form-label">Contract Type</label>
+                <div class="col-sm-8">
+                    <input type="text" id="contract_type" name="contract_type" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="installed_at" class="col-sm-4 col-form-label">Installed At</label>
+                <div class="col-sm-8">
+                    <input type="text" id="installed_at" name="installed_at" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="status" class="col-sm-4 col-form-label">Status</label>
+                <div class="col-sm-8">
+                    <input type="text" id="status" name="status" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12 text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <h3 align="center" border="1"><a href="/">Home</a></h3>
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+ {% endcomment %}
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width>
+    <title>Add Asset</title>
+</head>
+<body>
+    <h1 align="center">Add Asset</h1>
+    <form method="POST" align="center">
+        {% csrf_token %}
+        <table align="center">
+            <tr>
+                <th>Hospital</th>
+                <td>
+                    <select name="hospital_name">
+                        {% for x in data %}
+
+                        <option value="{{ x.id }}">{{ x.hospital_name }}</option>
+
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Asset Name</th>
+                <td><input type="text" name="asset_name"></td>
+            </tr>
+            <tr>
+                <th>Asset Type</th>
+                <td><input type="text" name="asset_type"></td>
+            </tr>
+            <tr>
+                <th>Purchase Date</th>
+                <td><input type="date" name="purchase_date"></td>
+            </tr>
+            <tr>
+                <th>Warranty Start Date</th>
+                <td><input type="date" name="warranty_start_date"></td>
+            </tr>
+            <tr>
+                <th>Contract End Date</th>
+                <td><input type="date" name="contract_end_date"></td>
+            </tr>
+            <tr>
+                <th>Contract Type</th>
+                <td><input type="text" name="contract_type"></td>
+            </tr>
+            <tr>
+                <th>Installed At</th>
+                <td><input type="text" name="installed_at"></td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td><input type="text" name="status"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html> -->

@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th {
+            text-align: right;
+            vertical-align: middle;
+            width: 40%;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 5px;
+        }
+
+        input[type="file"], input[type="date"], input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+{% endblock css %}
+
+{% block scripts %}
+<script>
+    function filterAssets() {
+        var hospitalSelect = document.getElementById("hospital");
+        var assetSelect = document.getElementById("asset");
+        var hospitalId = hospitalSelect.value;
+
+        for (var i = 0; i < assetSelect.options.length; i++) {
+            var option = assetSelect.options[i];
+            if (option.dataset.hospital == hospitalId) {
+                option.style.display = "block";
+            } else {
+                option.style.display = "none";
+            }
+        }
+
+        assetSelect.value = "";  // Reset asset selection
+    }
+</script>
+{% endblock scripts %}
+
+
+
+{% block main %}
+{% comment %} <h3 align="left" border="1"><a href="/">Home</a></h3> {% endcomment %}
+<h1>Add Complaint</h1>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>Hospital:</th>
+            <td>
+                <select id="hospital" name="hospital" class="form-control" onchange="filterAssets()">
+                    <option value="">Select Hospital</option>
+                    {% for hospital in hospitals %}
+                    <option value="{{ hospital.id }}">{{ hospital.hospital_name }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Asset:</th>
+            <td>
+                <select id="asset" name="asset" class="form-control">
+                    <option value="">Select Asset</option>
+                    {% for asset in assets %}
+                    <option value="{{ asset.id }}" data-hospital="{{ asset.hospital_id }}">{{ asset.asset_name }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Problem Description:</th>
+            <td><textarea name="problem_description" class="form-control"></textarea></td>
+        </tr>
+        <tr>
+            <th>Service Report:</th>
+            <td><input type="file" name="service_report" class="form-control-file"></td>
+        </tr>
+        <tr>
+            <th>Date Reported:</th>
+            <td><input type="date" name="date_reported" class="form-control"></td>
+        </tr>
+        <tr>
+            <th>Date Resolved:</th>
+            <td><input type="date" name="date_resolved" class="form-control"></td>
+        </tr>
+        <tr>
+            <th>Resolved:</th>
+            <td><input type="date" name="resolved" class="form-control"></td>
+        </tr>
+        <tr>
+            <th>Resolution Note:</th>
+            <td><input type="text" name="resolution_note" class="form-control"></td>
+        </tr>
+        <tr>
+            <th>Status:</th>
+            <td><input type="text" name="status" class="form-control"></td>
+        </tr>
+        
+        <tr>
+            <td colspan="2" align="center"><input type="submit" value="Submit" class="btn btn-primary"></td>
+        </tr>
+    </table>
+</form>
+
+{% endblock main %}
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Complaint</title>
+    <script>
+        function filterAssets() {
+            var hospitalSelect = document.getElementById("hospital");
+            var assetSelect = document.getElementById("asset");
+            var hospitalId = hospitalSelect.value;
+
+            for (var i = 0; i < assetSelect.options.length; i++) {
+                var option = assetSelect.options[i];
+                if (option.dataset.hospital == hospitalId) {
+                    option.style.display = "block";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+
+            assetSelect.value = "";  // Reset asset selection
+        }
+    </script>
+</head>
+<body>
+    <h1 align="center">Add Complaint</h1>
+    <form method="POST" enctype="multipart/form-data" align="center">
+        {% csrf_token %}
+        <table align="center">
+            <tr>
+                <th>Hospital</th>
+                <td>
+                    <select id="hospital" name="hospital" onchange="filterAssets()">
+                        <option value="">Select Hospital</option>
+                        {% for hospital in hospitals %}
+                        <option value="{{ hospital.id }}">{{ hospital.hospital_name }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Asset</th>
+                <td>
+                    <select id="asset" name="asset">
+                        <option value="">Select Asset</option>
+                        {% for asset in assets %}
+                        <option value="{{ asset.id }}" data-hospital="{{ asset.hospital_id }}">{{ asset.asset_name }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Problem Description</th>
+                <td><textarea name="problem_description"></textarea></td>
+            </tr>
+            <tr>
+                <th>Service Report</th>
+                <td><input type="file" name="service_report"></td>
+            </tr>
+            <tr>
+                <th>Date Reported</th>
+                <td><input type="date" name="date_reported"></td>
+            </tr>
+            <tr>
+                <th>Date Resolved</th>
+                <td><input type="date" name="date_resolved"></td>
+            </tr>
+            <tr>
+                <th>Resolved</th>
+                <td><input type="date" name="resolved"></td>
+            </tr>
+            <tr>
+                <th>Resolution Note</th>
+                <td><input type="text" name="resolution_note"></td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td><input type="text" name="status"></td>
+            </tr>
+            
+                
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html> -->

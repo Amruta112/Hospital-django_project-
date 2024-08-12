@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa; /* Bootstrap background color */
+            padding: 20px; /* Adding some padding for better spacing */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px; /* Margin bottom for the heading */
+        }
+        table {
+            width: 50%; /* Adjust table width as needed */
+            margin: auto; /* Center aligning the table */
+            background-color: #ffffff; /* Table background color */
+            padding: 20px; /* Adding padding inside the table */
+            border-radius: 10px; /* Rounded corners for the table */
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Adding a subtle shadow */
+        }
+        form {
+            margin-bottom: 0; /* Remove default margin for form inside table */
+        }
+        th, td {
+            padding: 10px; /* Padding for table cells */
+        }
+        input[type="text"], select {
+            width: 100%; /* Make input and select fields full width */
+            padding: 8px; /* Padding for input fields */
+            border: 1px solid #ccc; /* Border color */
+            border-radius: 5px; /* Rounded corners for inputs */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+        input[type="submit"] {
+            background-color: #007bff; /* Bootstrap primary button color */
+            color: #fff; /* Button text color */
+            border: none; /* Remove border */
+            padding: 10px 20px; /* Padding for button */
+            cursor: pointer; /* Cursor style */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 16px; /* Font size */
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker color on hover */
+        }
+    </style>
+    
+    <title>Add Hospital</title>
+</head>
+<!-- <body> -->
+<body style="background-image: url('{% static 'img/hosp.jpg' %}')">
+    
+    
+    <h1>Add Hospital</h1>
+    <table >
+        <form action="" method="POST" opacity="50%">
+            {% csrf_token %}
+            <tr>
+                <th>User Name</th>
+                <td>
+                    <select name="user">
+                        {% for x in data %}
+                        <option value="{{ x.username }}">{{ x.username }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Hospital Name</th>
+                <td><input type="text" name="hospital_name"></td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td><input type="text" name="contact"></td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td><input type="text" name="address"></td>
+            </tr>
+            <tr>
+                <th>Pincode</th>
+                <td><input type="text" name="pincode"></td>
+            </tr>
+            <tr>
+                <th>Admin Name</th>
+                <td><input type="text" name="admin_name"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Submit"></td>
+            </tr>
+        </form>
+    </table>
+    <h3 align="center" border="1"><a href="/">Home</a></h3>
+
+    <!-- Bootstrap JS and dependencies (if needed) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add hospital</title>
+</head>
+<body>
+    
+    <h1 align ="center" >Add Hospital</h1>
+    <table align="center">
+        <form action="" method="POST">
+            {% csrf_token %} -->
+                <!-- <tr>
+                    <th>User Name</th>
+                    <td><input type="text" name="user"></td>
+                </tr>
+                <tr> -->
+                    <!-- <th>User Name</th>
+                    <td>
+                        <select name="user">
+                            {% for x in data %}
+                            <option value="{{ x.username }}">{{ x.username }}</option>
+    
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Hospital_Name</th>
+                    <td><input type="text" name="hospital_name">
+                    </td>
+                </tr>
+                <tr>
+                    <th> Contact</th>
+                    <td><input type="text" name="contact"></td>
+                </tr>
+                <tr>
+                    <tr>
+                    <th>Address</th>
+                    <td><input type="text" name="address">
+                    </td>
+                </tr>
+                <tr>
+                    <tr>
+                    <th>Pincode</th>
+                    <td><input type="text" name="pincode">
+                    </td>
+                </tr>
+                <tr>
+                    <tr>
+                    <th>Admin_name</th>
+                    <td><input type="text" name="admin_name">
+                    </td>
+                </tr>
+                <tr>
+                    <tr>
+                    <td colspan="2" align="center"><input type="submit" value="Submit">
+                    </td>
+                </tr>
+        </form>
+    </table>
+</body>
+</html>
+ -->
